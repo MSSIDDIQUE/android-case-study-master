@@ -1,4 +1,4 @@
-# apk link : https://drive.google.com/file/d/1all-PVhglor0d5NPh_Ljyw0S6fOB0HWT/view?usp=sharing
+apk link : https://drive.google.com/file/d/1all-PVhglor0d5NPh_Ljyw0S6fOB0HWT/view?usp=sharing
 
 # Android Case Study
 
