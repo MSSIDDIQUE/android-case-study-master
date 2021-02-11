@@ -1,0 +1,160 @@
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <data>
+    <variable
+        name="clickListener"
+        type="android.view.View.OnClickListener" />
+    <variable
+        name="prdt"
+        type="com.target.targetcasestudy.api.response.Product" />
+
+  </data>
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="150dp"
+      android:layout_margin="5dp"
+      android:onClick="@{clickListener}"
+      app:layout_constraintBottom_toTopOf="@+id/separator"
+      app:layout_constraintTop_toTopOf="@+id/separator">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/guidelineVerticle"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+      <ImageView
+          android:id="@+id/deal_list_item_image_view"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:src="@drawable/ic_launcher_foreground"
+          app:imageFromUrl="@{prdt.imageUrl}"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVerticle"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></androidx.constraintlayout.widget.Guideline>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toEndOf="@id/guidelineVerticle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+      <TextView
+          android:id="@+id/deal_list_item_title"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="15dp"
+          android:layout_marginEnd="15dp"
+          android:text="@{prdt.title}"
+          android:textSize="22sp"
+          android:fontFamily="@font/abadi"
+          android:textColor="#000000"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:id="@+id/separator"
+          android:layout_width="match_parent"
+          android:layout_height="1dp"
+          android:layout_marginTop="10dp"
+          android:layout_marginStart="15dp"
+          android:layout_marginEnd="15dp"
+          android:background="#D3D3D3"
+          app:layout_constraintEnd_toEndOf="@id/deal_list_item_title"
+          app:layout_constraintStart_toStartOf="@id/deal_list_item_title"
+          app:layout_constraintTop_toBottomOf="@id/deal_list_item_title" />
+
+      <TextView
+          android:id="@+id/deal_list_item_price"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          android:text="@{prdt.salePrice.displayString!=null?prdt.salePrice.displayString:prdt.regularPrice.displayString}"
+          android:textSize="20sp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/separator" />
+
+      <TextView
+          android:id="@+id/ship"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="ship"
+          android:textSize="16sp"
+          android:textColor="#000000"
+          android:layout_marginEnd="5dp"
+          app:layout_constraintTop_toTopOf="@id/or"
+          app:layout_constraintBottom_toBottomOf="@id/or"
+          app:layout_constraintEnd_toStartOf="@id/or"/>
+
+      <TextView
+          android:id="@+id/or"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="or"
+          android:textSize="16sp"
+          android:textColor="#D3D3D3"
+          android:layout_marginEnd="5dp"
+          app:layout_constraintTop_toTopOf="@id/card_aisle"
+          app:layout_constraintBottom_toBottomOf="@id/card_aisle"
+          app:layout_constraintEnd_toStartOf="@id/card_aisle"/>
+
+      <androidx.cardview.widget.CardView
+          android:id="@+id/card_aisle"
+          android:layout_width="40dp"
+          android:layout_height="40dp"
+          android:layout_marginEnd="15dp"
+          app:cardCornerRadius="25dp"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/separator">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+          <TextView
+              android:id="@+id/aisle"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@{prdt.aisle}"
+              android:textColor="@color/red_color"
+              android:textSize="16sp"
+              android:textStyle="bold"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+      </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
