@@ -11,7 +11,7 @@ import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import com.target.targetcasestudy.R
 import com.target.targetcasestudy.data.validateCreditCard
-import kotlinx.android.synthetic.main.dialog_payment.*
+import com.target.targetcasestudy.databinding.DialogPaymentBinding
 
 /**
  * Dialog that displays a minimal credit card entry form.
@@ -29,6 +29,7 @@ class PaymentDialogFragment : DialogFragment() {
 
   private lateinit var submitButton: Button
   private lateinit var creditCardInput: EditText
+  private var binding: DialogPaymentBinding? = null
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -51,8 +52,9 @@ class PaymentDialogFragment : DialogFragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    binding = DialogPaymentBinding.bind(view)
     submitButton.isEnabled = false
-    card_number.addTextChangedListener(object :TextWatcher{
+    binding?.cardNumber?.addTextChangedListener(object :TextWatcher{
       override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
       }
 
@@ -62,7 +64,6 @@ class PaymentDialogFragment : DialogFragment() {
       override fun afterTextChanged(p0: Editable?) {
         submitButton.isEnabled = validateCreditCard(p0.toString())
       }
-
     })
   }
 

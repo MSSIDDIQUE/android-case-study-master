@@ -7,10 +7,6 @@ import kotlinx.coroutines.withContext
 class Repository(
     private val remoteDataSource: RemoteDataSource
 ) {
-    suspend fun fetchProducts() = withContext(Dispatchers.IO){
-        remoteDataSource.fetchProducts()
-    }
-    suspend fun fetchProduct(id:Int) = withContext(Dispatchers.IO){
-        remoteDataSource.fetchProduct(id)
-    }
+    suspend fun fetchProducts() = remoteDataSource.fetchProducts()
+    suspend fun fetchProduct(id:Int) = remoteDataSource.fetchProduct(id)
 }

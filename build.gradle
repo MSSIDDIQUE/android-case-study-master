@@ -2,11 +2,11 @@
 
 buildscript {
 
-    ext.room_version = '2.2.5'
+    ext.room_version = '2.2.6'
     ext.retrofit_version = '2.9.0'
-    ext.kotlin_version = '1.4.20'
-    ext.lifecycle_version = '2.2.0'
-    ext.nav_version = '2.3.1'
+    ext.kotlin_version = '1.4.32'
+    ext.lifecycle_version = '2.3.1'
+    ext.nav_version = '2.3.5'
     ext.paging_version = "3.0.0-alpha09"
     ext.epoxy_version = '4.1.0'
     ext.lottie_version = '3.5.0'
@@ -14,22 +14,20 @@ buildscript {
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.0'
+        classpath 'com.android.tools.build:gradle:4.2.0-rc01'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         
     }
 }

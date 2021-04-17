@@ -16,7 +16,6 @@ import com.target.targetcasestudy.data.Result
 import com.target.targetcasestudy.ui.vm.DealListViewModel
 import com.target.targetcasestudy.ui.vm.DealListViewModelFactory
 import com.target.targetcasestudy.utils.exceptions.NoConnectivityException
-import kotlinx.android.synthetic.main.fragment_deal_list.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -46,20 +45,28 @@ class DealListFragment() : Fragment(R.layout.fragment_deal_list),KodeinAware {
             Result.Status.SUCCESS->{
               deals_adapter = DealListAdapter(result.data?.products as ArrayList<Product>)
               linearLayoutManager = LinearLayoutManager(context)
-              recycler_view.layoutManager = linearLayoutManager
-              recycler_view.adapter = deals_adapter
-              progress_bar.visibility = View.GONE
-              loading_text.visibility = View.GONE
+              binding?.apply {
+                recyclerView.apply {
+                  layoutManager = linearLayoutManager
+                  adapter = deals_adapter
+                }
+                progressBar.visibility = View.GONE
+                loadingText.visibility = View.GONE
+              }
             }
             Result.Status.LOADING->{
-              progress_bar.visibility = View.VISIBLE
-              loading_text.visibility = View.VISIBLE
+              binding?.apply {
+                progressBar.visibility = View.VISIBLE
+                loadingText.visibility = View.VISIBLE
+              }
             }
             Result.Status.ERROR->{
               Toast.makeText(context,"Something went wrong please check your internet connection",
                 Toast.LENGTH_LONG).show()
-              progress_bar.visibility = View.GONE
-              loading_text.visibility = View.GONE
+              binding?.apply {
+                progressBar.visibility = View.GONE
+                loadingText.visibility = View.GONE
+              }
             }
           }
         }
@@ -73,8 +80,8 @@ class DealListFragment() : Fragment(R.layout.fragment_deal_list),KodeinAware {
     super.onViewCreated(view, savedInstanceState)
     linearLayoutManager = LinearLayoutManager(context)
     binding = FragmentDealListBinding.bind(view)
-    binding.apply {
-      recycler_view.apply {
+    binding?.apply {
+      recyclerView.apply {
         setHasFixedSize(true)
         layoutManager = linearLayoutManager
         addItemDecoration(DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL))

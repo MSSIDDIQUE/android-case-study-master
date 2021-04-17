@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.target.targetcasestudy.repo.Repository
 
+@Suppress("UNCHECKED_CAST")
 class DealListViewModelFactory(
     private val repo: Repository
 ):ViewModelProvider.NewInstanceFactory() {

@@ -41,23 +41,29 @@ class DealItemFragment : Fragment(R.layout.fragment_deal_item),KodeinAware {
   override fun onStart() {
     super.onStart()
     lifecycleScope.launch {
-      val deal = withContext(Dispatchers.IO) {
+      val deal = withContext(Dispatchers.IO){
         viewModel.fetchProduct(args.prdtId)
       }
       when(deal.status){
         Result.Status.SUCCESS->{
-          binding?.prdtData  = deal.data as Product
-          binding?.progressBar?.visibility = View.GONE
-          binding?.loadingText?.visibility = View.GONE
+          binding?.apply {
+            prdtData  = deal.data as Product
+            progressBar.visibility = View.GONE
+            loadingText.visibility = View.GONE
+          }
         }
         Result.Status.LOADING->{
-          binding?.progressBar?.visibility = View.VISIBLE
-          binding?.loadingText?.visibility = View.VISIBLE
+          binding?.apply {
+            progressBar.visibility = View.VISIBLE
+            loadingText.visibility = View.VISIBLE
+          }
         }
         Result.Status.ERROR->{
           Toast.makeText(requireContext(),"Something went wrong",Toast.LENGTH_LONG).show()
-          binding?.progressBar?.visibility = View.GONE
-          binding?.loadingText?.visibility = View.GONE
+          binding?.apply {
+            progressBar.visibility = View.GONE
+            loadingText.visibility = View.GONE
+          }
         }
       }
     }
